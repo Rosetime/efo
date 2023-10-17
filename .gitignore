@@ -38,6 +38,7 @@ buildNumber.properties
 .idea
 *.iws
 *.ipr
+*.iml
 
 .DS_Store
 !.mvn/wrapper/maven-wrapper.jar
