@@ -249,7 +249,7 @@ function getUserDownloaded() {
     $.get("/file/user/downloaded", {offset: offset, search: search}, function (data) {
         layer.closeAll();
         try {
-            setResources(JSON.parse(data), currentTab);
+            setResourcesWithOutDownloadTimes(JSON.parse(data), currentTab);
         } catch (e) {
             window.location.href = "/signin";
         }
@@ -279,7 +279,11 @@ function getResource(orderBy) {
         search: search
     }, function (data) {
         layer.closeAll();
-        setResources(JSON.parse(data), currentTab);
+        try {
+            setResources(JSON.parse(data), currentTab);
+        } catch (e) {
+            window.location.href = "/signin";
+        }
     });
 }
 
@@ -288,7 +292,7 @@ function setResources(resources, tabId) {
     search = "";
     if (resources.length < 1) {
         offset -= 1;
-        alerts("糟糕，没有数据了");
+        /** alerts("糟糕，没有数据了"); */
     } else {
         $.each(resources, function (i, resource) {
             /** @namespace resource.fileName */
@@ -309,7 +313,46 @@ function setResources(resources, tabId) {
                 "<div class='col-sm-11 col-12'><h4><a data-toggle='tooltip' class='visit-url' href='" + resource.visitUrl + "' target='_blank' data-description='" + resource.description + "' title='" + resource.description + "'>" + resource.fileName + "</a>" +
                 ("#uploaded-content" === tabId ? "&emsp;<a href='javascript:;' class='font-1' onclick='editFile();'>编辑</a>&emsp;<a href='javascript:;' class='font-1' onclick='removeFile();'>删除</a>" : "") +
                 "</h4><p>上传者：<b>" + resource.username + "</b>&emsp;" + (isDownloaded ? "下载" : "上传") + "时间：<b>" + new Date(date).format("yyyy-MM-dd hh:mm:ss") + "</b>&emsp;文件大小：<b>" + formatSize(resource.size) + "</b>&emsp;分类：<b class='file-category'>" + resource.categoryName + "</b>" +
-                "&emsp;标签：<b class='file-tag'>" + resource.tag + "</b>&emsp;下载次数：<b>" + resource.downloadTimes + "</b>" +
+                "&emsp;版本记录：<b class='file-tag'>" + resource.tag + "</b>&emsp;下载次数：<b>" + resource.downloadTimes + "</b>" +
+                "</p></div></div><br/></div></div><br/>";
+        });
+        if (offset > 0) {
+            $(tabId).append(contentHtml);
+        } else {
+            $(tabId).html(contentHtml);
+        }
+        $('[data-toggle="tooltip"]').tooltip();
+        setCSS();
+    }
+}
+
+function setResourcesWithOutDownloadTimes(resources, tabId) {
+    var contentHtml = "";
+    search = "";
+    if (resources.length < 1) {
+        offset -= 1;
+        /** alerts("糟糕，没有数据了"); */
+    } else {
+        $.each(resources, function (i, resource) {
+            /** @namespace resource.fileName */
+            /** @namespace resource.createTime */
+            /** @namespace resource.categoryName */
+            /** @namespace resource.checkTimes */
+            /** @namespace resource.downloadTimes */
+            /** @namespace resource.visitUrl */
+            /** @namespace resource.downloadTime */
+            /**
+             * 暂时不考虑查看次数
+             * @code &emsp;查看次数：<b>" + resource.checkTimes + "</b>
+             */
+            var isDownloaded = "#downloaded-content" === tabId;
+            var date = isDownloaded ? resource.downloadTime : resource.createTime;
+            contentHtml += "<div class='row content-box rounded' data-id='" + resource.id + "'><div class='col-12 col-sm-12'><br/><div class='row'>" +
+                (isMobile() ? "" : "<div class='col-sm-1 col-0'><img src='" + (resource.avatar ? resource.avatar : "/assets/img/default-user.jpg") + "' class='rounded avatar'/></div>") +
+                "<div class='col-sm-11 col-12'><h4><a data-toggle='tooltip' class='visit-url' href='" + resource.visitUrl + "' target='_blank' data-description='" + resource.description + "' title='" + resource.description + "'>" + resource.fileName + "</a>" +
+                ("#uploaded-content" === tabId ? "&emsp;<a href='javascript:;' class='font-1' onclick='editFile();'>编辑</a>&emsp;<a href='javascript:;' class='font-1' onclick='removeFile();'>删除</a>" : "") +
+                "</h4><p>上传者：<b>" + resource.username + "</b>&emsp;" + (isDownloaded ? "下载" : "上传") + "时间：<b>" + new Date(date).format("yyyy-MM-dd hh:mm:ss") + "</b>&emsp;文件大小：<b>" + formatSize(resource.size) + "</b>&emsp;分类：<b class='file-category'>" + resource.categoryName + "</b>" +
+                "&emsp;版本记录：<b class='file-tag'>" + resource.tag + "</b>" +
                 "</p></div></div><br/></div></div><br/>";
         });
         if (offset > 0) {

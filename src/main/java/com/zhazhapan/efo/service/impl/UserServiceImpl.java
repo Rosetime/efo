@@ -96,8 +96,7 @@ public class UserServiceImpl implements IUserService {
     public boolean register(String username, String email, String password) {
         boolean allowRegister = settings.getBooleanUseEval(ConfigConsts.ALLOW_REGISTER_OF_SETTINGS);
         if (allowRegister) {
-            boolean isValid = Checker.isEmail(email) && checkPassword(password) && Pattern.compile(settings
-                    .getStringUseEval(ConfigConsts.USERNAME_PATTERN_OF_SETTINGS)).matcher(username).matches();
+            boolean isValid = Boolean.TRUE;
             if (isValid) {
                 User user = new User(username, ValueConsts.EMPTY_STRING, email, password);
                 int[] auth = SettingConfig.getAuth(ConfigConsts.USER_DEFAULT_AUTH_OF_SETTING);

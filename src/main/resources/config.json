@@ -18,7 +18,7 @@
         "allowLogin": true,
         "loadParticle": false,
         "anonymousUser": {
-            "visible": true,
+            "visible": false,
             "downloadable": true
         },
         "css": [
@@ -88,7 +88,7 @@
         },
         "defaultAuth": {
             "isDownloadable": true,
-            "isUploadable": true,
+            "isUploadable": false,
             "isDeletable": false,
             "isUpdatable": false,
             "isVisible": true
@@ -121,7 +121,7 @@
         "orderBy": "id desc",
         "coverIfExists": false,
         "linkRule": {
-            "custom": "/{year}/{month}/{day}/{randomId}{fileSuffix}",
+            "custom": "/{year}/{month}/{day}/{fileName}",
             "support": [
                 "{year}",
                 "{month}",

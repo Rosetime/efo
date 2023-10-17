@@ -341,6 +341,47 @@ function showFileModal(table, modal) {
     }
 }
 
+function openModal() {
+    $('#add_user-div').modal('show');
+}
+
+function addUser() {
+    /** @namespace globalConfig.allowRegister */
+    if (globalConfig.allowRegister) {
+        var username = $("#username").val();
+        var email = $("#email").val();
+        var verifyCode = $("#email-verify-code").val();
+        var password = $("#reg-password").val();
+        var passwordConfirm = $("#confirm-password").val();
+        var canRegister = checkUserPassword(password, passwordConfirm);
+        if (canRegister) {
+            layer.load(1);
+            $.post("/user/register", {
+                username: username,
+                email: email,
+                password: password,
+                code: verifyCode
+            }, function (data) {
+                layer.closeAll();
+                var json = JSON.parse(data);
+                if (json.status === "success") {
+                    alerts("添加成功");
+                } else {
+                    alerts(json.message);
+                }
+            });
+        } else {
+            alerts("密码不一致");
+        }
+    } else {
+        alerts("该站点已禁止注册，请联系管理员");
+    }
+}
+
+function checkUserPassword(password, passwordConfirm) {
+    return password === passwordConfirm;
+}
+
 function setFileAuth() {
     checkRowIndex();
     var file = app.files[$(selectedRows[rowIndex]).children(".file-index").attr("data-key")];

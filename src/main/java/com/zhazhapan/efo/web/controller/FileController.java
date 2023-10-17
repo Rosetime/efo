@@ -6,6 +6,7 @@ import com.zhazhapan.efo.EfoApplication;
 import com.zhazhapan.efo.annotation.AuthInterceptor;
 import com.zhazhapan.efo.entity.User;
 import com.zhazhapan.efo.enums.InterceptorLevel;
+import com.zhazhapan.efo.model.FileRecord;
 import com.zhazhapan.efo.modules.constant.ConfigConsts;
 import com.zhazhapan.efo.service.IFileService;
 import com.zhazhapan.efo.util.BeanUtils;
@@ -26,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  * @author pantao
@@ -56,7 +59,9 @@ public class FileController {
     @RequestMapping(value = "/user/downloaded", method = RequestMethod.GET)
     public String getUserDownloaded(int offset, String search) {
         User user = (User) request.getSession().getAttribute(ValueConsts.USER_STRING);
-        return Formatter.listToJson(fileService.listUserDownloaded(user.getId(), offset, search));
+        return Formatter.listToJson(fileService.listUserDownloaded(user.getId(), offset, search)
+                .stream().sorted(Comparator.comparing(FileRecord::getDownloadTime).reversed())
+                .collect(Collectors.toList()));
     }
 
     @ApiOperation(value = "获取我的上传记录")
@@ -86,15 +91,18 @@ public class FileController {
     @ApiImplicitParams({@ApiImplicitParam(name = "offset", value = "偏移量", required = true), @ApiImplicitParam(name =
             "categoryId", value = "分类ID", required = true), @ApiImplicitParam(name = "orderBy", value = "排序方式",
             required = true, example = "id desc"), @ApiImplicitParam(name = "search", value = "记录匹配（允许为空）")})
-    @AuthInterceptor(InterceptorLevel.NONE)
+    @AuthInterceptor(InterceptorLevel.USER)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getAll(int offset, int categoryId, String orderBy, String search) {
         User user = (User) request.getSession().getAttribute(ValueConsts.USER_STRING);
         boolean canGet = EfoApplication.settings.getBooleanUseEval(ConfigConsts.ANONYMOUS_VISIBLE_OF_SETTING) ||
-                (Checker.isNotNull(user) && user.getIsVisible() == 1);
+                (Checker.isNotNull(user));
         if (canGet) {
             int userId = Checker.isNull(user) ? 0 : user.getId();
-            return Formatter.listToJson(fileService.listAll(userId, offset, categoryId, orderBy, search));
+            return Formatter.listToJson(fileService.listAll(userId, offset, categoryId, orderBy, search).stream()
+                    .filter(o -> o.getIsDownloadable() <= user.getIsDownloadable() &&
+                            o.getIsVisible() <= user.getIsVisible())
+                    .collect(Collectors.toList()));
         } else {
             jsonObject.put("error", "权限被限制，无法获取资源，请联系管理员");
             return jsonObject.toString();

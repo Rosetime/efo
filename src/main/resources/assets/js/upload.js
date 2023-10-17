@@ -17,7 +17,7 @@ $("#file-input").fileinput({
     if (json.status === "success") {
         alerts("上传成功");
     } else {
-        alerts("上传失败，文件不合法");
+        alerts("上传失败，文件不合法或权限没有");
     }
 });
 

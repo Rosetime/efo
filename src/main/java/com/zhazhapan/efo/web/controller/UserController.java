@@ -126,7 +126,7 @@ public class UserController {
     @ApiOperation(value = "更新我的密码")
     @ApiImplicitParams({@ApiImplicitParam(name = "oldPassword", value = "原密码", required = true), @ApiImplicitParam
             (name = "newPassword", value = "新密码", required = true)})
-    @AuthInterceptor(InterceptorLevel.USER)
+    @AuthInterceptor(InterceptorLevel.SYSTEM)
     @RequestMapping(value = "/password", method = RequestMethod.PUT)
     public String updatePassword(String oldPassword, String newPassword) {
         User user = (User) request.getSession().getAttribute(ValueConsts.USER_STRING);
@@ -187,7 +187,7 @@ public class UserController {
     @ApiImplicitParams({@ApiImplicitParam(name = "username", value = "用户名", required = true), @ApiImplicitParam(name
             = "email", value = "邮箱"), @ApiImplicitParam(name = "password", value = "密码", required = true),
             @ApiImplicitParam(name = "code", value = "验证码")})
-    @AuthInterceptor(InterceptorLevel.NONE)
+    @AuthInterceptor(InterceptorLevel.SYSTEM)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(String username, String email, String password, String code) {
         boolean emilVerify = EfoApplication.settings.getBooleanUseEval(ConfigConsts.EMAIL_VERIFY_OF_SETTINGS);
@@ -212,7 +212,7 @@ public class UserController {
     @ApiImplicitParams({@ApiImplicitParam(name = "email", value = "邮箱", required = true), @ApiImplicitParam(name =
             "code", value = "验证码", required = true), @ApiImplicitParam(name = "password", value = "密码", required =
             true)})
-    @AuthInterceptor(InterceptorLevel.NONE)
+    @AuthInterceptor(InterceptorLevel.SYSTEM)
     @RequestMapping(value = "/password/reset", method = RequestMethod.PUT)
     public String resetPassword(String email, String code, String password) {
         jsonObject.put("status", "error");

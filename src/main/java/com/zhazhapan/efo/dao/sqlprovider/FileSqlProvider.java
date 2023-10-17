@@ -68,7 +68,7 @@ public class FileSqlProvider {
     }
 
     public String getUserUploaded(@Param("offset") int offset, @Param("search") String search) {
-        return getBaseSql(ValueConsts.FALSE) + " where f.is_visible=1 and (f.user_id=#{userId} or a.is_updatable=1 or" +
+        return getBaseSql(ValueConsts.FALSE) + " where f.is_visible=1 and (f.user_id=#{userId} and a.is_updatable=1 and" +
                 " a.is_deletable=1)" + getSqlEnds(offset,
                 ValueConsts.EMPTY_STRING, search);
     }

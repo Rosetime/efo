@@ -36,9 +36,6 @@
             <a href="#file-manager"><span class="glyphicon glyphicon-file">&nbsp;<b>文件管理</b></span></a>
         </li>
         <li class="jq-nav-item">
-            <a href="#auth-manager"><span class="glyphicon glyphicon-lock">&nbsp;<b>权限管理</b></span></a>
-        </li>
-        <li class="jq-nav-item">
             <a href="#category-manager"><span class="glyphicon glyphicon-filter">&nbsp;<b>分类管理</b></span></a>
         </li>
         <li class="jq-nav-item">
@@ -148,9 +145,6 @@
                 </button>
                 <button class="btn btn-warning" onclick="showFileModal('#file-manager-table','#fileModifiedModal');"><i
                         class="glyphicon glyphicon-wrench"></i> 修改
-                </button>
-                <button class="btn btn-dark" onclick="showFileModal('#file-manager-table','#fileAuthModal');"><i
-                        class="glyphicon glyphicon-eye-close"></i> 权限
                 </button>
                 <button class="btn btn-danger file-delete"><i class="glyphicon glyphicon-trash"></i> 删除</button>
             </div>
@@ -330,6 +324,56 @@
             <br/>
         </div>
     </div>
+
+
+    <div class="modal fade" id="add_user-div" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left" >新增用户</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-12">
+                            <input placeholder="用户名" id="username" type="text" class="form-control username"
+                                   data-toggle="tooltip"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-12 col-12">
+                            <input placeholder="电子邮箱，可用于登录" id="email" type="text" class="form-control username"
+                                   data-toggle="tooltip"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-12 col-12">
+                            <input placeholder="密码" id="reg-password" type="password" class="form-control username"
+                                   data-toggle="tooltip"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-12 col-12">
+                            <input placeholder="确认密码" id="confirm-password" type="password" class="form-control username"
+                                   data-toggle="tooltip"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center row">
+                    <div class="col-12 col-sm-12">
+                        <div class="col-8 mx-auto"> <!-- 使用 offset 类将其居中 -->
+                            <button class="btn btn-primary btn-block" onclick="addUser();">添加</button>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+    </div>
+
     <!--用户管理-->
     <div class="row jq-tab hide" id="user-manager">
         <div class="col-12 col-sm-10 offset-sm-1 content-box rounded">
@@ -346,6 +390,9 @@
         <div class="col-12 col-sm-10 offset-sm-1 content-box rounded">
             <br/>
             <div class="text-right">
+                <button class="btn btn-primary" onclick="openModal()"><i
+                        class="glyphicon glyphicon-plus"></i> 新增用户
+                </button>
                 <button class="btn btn-info" onclick="showFileModal('#user-manager-table','#userFileAuthModal')"><i
                         class="glyphicon glyphicon-edit"></i> 编辑用户默认文件权限
                 </button>
