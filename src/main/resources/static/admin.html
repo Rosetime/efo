@@ -394,10 +394,10 @@
                         class="glyphicon glyphicon-plus"></i> 新增用户
                 </button>
                 <button class="btn btn-info" onclick="showFileModal('#user-manager-table','#userFileAuthModal')"><i
-                        class="glyphicon glyphicon-edit"></i> 编辑用户默认文件权限
+                        class="glyphicon glyphicon-edit"></i> 编辑用户权限
                 </button>
                 <button class="btn btn-warning" onclick="showFileModal('#user-manager-table','#userAuthModal')"><i
-                        class="glyphicon glyphicon-wrench"></i> 修改用户权限
+                        class="glyphicon glyphicon-wrench"></i> 修改用户类型
                 </button>
                 <button class="btn btn-danger" onclick="showFileModal('#user-manager-table','#userPasswordModal');"><i
                         class="glyphicon glyphicon-warning-sign"></i> 重置用户密码
@@ -461,9 +461,9 @@
             <br/>
             <div class="row">
                 <div class="col-12 col-sm-12 text-right">
-                    <button class="btn btn-outline-info" onclick="saveConfig();"><i
+                    <!--<button class="btn btn-outline-info" onclick="saveConfig();"><i
                             class="glyphicon glyphicon-floppy-disk"></i> 保存
-                    </button>
+                    </button>-->
                 </div>
             </div>
             <br/>
@@ -573,7 +573,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title pull-left" id="userFileAuthModalLabel">编辑用户默认文件权限</h4>
+                <h4 class="modal-title pull-left" id="userFileAuthModalLabel">编辑用户权限</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">

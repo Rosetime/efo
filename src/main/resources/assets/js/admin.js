@@ -376,6 +376,7 @@ function addUser() {
     } else {
         alerts("该站点已禁止注册，请联系管理员");
     }
+    $('#add_user-div').modal('hide');
 }
 
 function checkUserPassword(password, passwordConfirm) {

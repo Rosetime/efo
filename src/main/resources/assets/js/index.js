@@ -151,6 +151,7 @@ $(document).ready(function () {
             search = $('#search').val();
             offset = 0;
             getPage();
+            offset = -1;
         }
     });
     $(".content-filter").change(function () {
@@ -291,7 +292,14 @@ function setResources(resources, tabId) {
     var contentHtml = "";
     search = "";
     if (resources.length < 1) {
-        offset -= 1;
+        if (offset < 1) {
+            $('[data-toggle="tooltip"]').tooltip();
+            setCSS();
+            $(tabId).html(contentHtml);
+        }
+        if (offset > -1) {
+            offset -= 1;
+        }
         /** alerts("糟糕，没有数据了"); */
     } else {
         $.each(resources, function (i, resource) {
@@ -330,6 +338,14 @@ function setResourcesWithOutDownloadTimes(resources, tabId) {
     var contentHtml = "";
     search = "";
     if (resources.length < 1) {
+        if (offset < 1) {
+            $('[data-toggle="tooltip"]').tooltip();
+            setCSS();
+            $(tabId).html(contentHtml);
+        }
+        if (offset > -1) {
+
+        }
         offset -= 1;
         /** alerts("糟糕，没有数据了"); */
     } else {

@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "更新用户权限（注：不是文件权限）")
-    @AuthInterceptor(InterceptorLevel.ADMIN)
+    @AuthInterceptor(InterceptorLevel.SYSTEM)
     @RequestMapping(value = "/{id}/{permission}", method = RequestMethod.PUT)
     public String updatePermission(@PathVariable("id") int id, @PathVariable("permission") int permission) {
         User user = (User) request.getSession().getAttribute(ValueConsts.USER_STRING);
@@ -67,15 +67,15 @@ public class UserController {
     }
 
     @ApiOperation("重置用户密码（管理员接口）")
-    @AuthInterceptor(InterceptorLevel.ADMIN)
+    @AuthInterceptor(InterceptorLevel.SYSTEM)
     @RequestMapping(value = "/reset/{id}/{password}", method = RequestMethod.PUT)
     public String resetPassword(@PathVariable("id") int id, @PathVariable("password") String password) {
         return ControllerUtils.getResponse(userService.resetPassword(id, password));
     }
 
-    @ApiOperation(value = "更新用户的默认文件权限")
+    @ApiOperation(value = "更新用户类型")
     @ApiImplicitParam(name = "auth", value = "权限", example = "1,1,1,1", required = true)
-    @AuthInterceptor(InterceptorLevel.ADMIN)
+    @AuthInterceptor(InterceptorLevel.SYSTEM)
     @RequestMapping(value = "/{id}/auth", method = RequestMethod.PUT)
     public String updateFileAuth(@PathVariable("id") int id, String auth) {
         return ControllerUtils.getResponse(userService.updateFileAuth(id, auth));

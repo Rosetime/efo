@@ -121,7 +121,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean emailExists(String email) {
-        return Checker.isEmail(email) && userDAO.checkEmail(email) > 0;
+        return userDAO.checkEmail(email) > 0;
     }
 
     @Override
