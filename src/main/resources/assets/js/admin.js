@@ -564,7 +564,7 @@ function toOneOrZero(val) {
 }
 
 function updateAuth(url, down, uplo, dele, upda, visi, key) {
-    var auth = toOneOrZero(down) + "," + toOneOrZero(uplo) + "," + toOneOrZero(dele) + "," + toOneOrZero(upda) + "," + toOneOrZero(visi);
+    var auth = down + "," + toOneOrZero(uplo) + "," + toOneOrZero(dele) + "," + toOneOrZero(upda) + "," + toOneOrZero(visi);
     layer.load(1);
     $.ajax({
         url: url, type: "PUT", data: {auth: auth}, success: function (data) {

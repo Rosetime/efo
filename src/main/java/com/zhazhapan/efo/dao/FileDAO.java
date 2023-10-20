@@ -4,6 +4,7 @@ import com.zhazhapan.efo.dao.sqlprovider.FileSqlProvider;
 import com.zhazhapan.efo.entity.File;
 import com.zhazhapan.efo.model.BaseAuthRecord;
 import com.zhazhapan.efo.model.FileBasicRecord;
+import com.zhazhapan.efo.model.FileList;
 import com.zhazhapan.efo.model.FileRecord;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -293,8 +294,8 @@ public interface FileDAO {
      *
      * @return {@link List}
      */
-    @SelectProvider(type = FileSqlProvider.class, method = "getAll")
-    List<FileRecord> listAll(@Param("userId") int userId, @Param("offset") int offset, @Param("categoryId") int
+    @SelectProvider(type = FileSqlProvider.class, method = "getFileAll")
+    List<FileList> listAll(@Param("userId") int userId, @Param("offset") int offset, @Param("categoryId") int
             categoryId, @Param("orderBy") String orderBy, @Param("search") String search);
 
     /**

@@ -3,6 +3,7 @@ package com.zhazhapan.efo.service;
 import com.zhazhapan.efo.entity.User;
 import com.zhazhapan.efo.model.BaseAuthRecord;
 import com.zhazhapan.efo.model.FileBasicRecord;
+import com.zhazhapan.efo.model.FileList;
 import com.zhazhapan.efo.model.FileRecord;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -159,7 +160,7 @@ public interface IFileService {
      *
      * @return {@link List}
      */
-    List<FileRecord> listAll(int userId, int offset, int categoryId, String orderBy, String search);
+    List<FileList> listAll(int userId, int offset, int categoryId, String orderBy, String search);
 
     /**
      * 上传文件

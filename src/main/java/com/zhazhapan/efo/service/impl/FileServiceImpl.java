@@ -7,10 +7,7 @@ import com.zhazhapan.efo.dao.FileDAO;
 import com.zhazhapan.efo.entity.Category;
 import com.zhazhapan.efo.entity.File;
 import com.zhazhapan.efo.entity.User;
-import com.zhazhapan.efo.model.AuthRecord;
-import com.zhazhapan.efo.model.BaseAuthRecord;
-import com.zhazhapan.efo.model.FileBasicRecord;
-import com.zhazhapan.efo.model.FileRecord;
+import com.zhazhapan.efo.model.*;
 import com.zhazhapan.efo.modules.constant.ConfigConsts;
 import com.zhazhapan.efo.modules.constant.DefaultValues;
 import com.zhazhapan.efo.service.IAuthService;
@@ -235,7 +232,7 @@ public class FileServiceImpl implements IFileService {
     }
 
     @Override
-    public List<FileRecord> listAll(int userId, int offset, int categoryId, String orderBy, String search) {
+    public List<FileList> listAll(int userId, int offset, int categoryId, String orderBy, String search) {
         return fileDAO.listAll(userId, offset, categoryId, orderBy, search);
     }
 

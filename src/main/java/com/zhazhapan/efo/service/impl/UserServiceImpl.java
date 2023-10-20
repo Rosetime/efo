@@ -100,7 +100,7 @@ public class UserServiceImpl implements IUserService {
             if (isValid) {
                 User user = new User(username, ValueConsts.EMPTY_STRING, email, password);
                 int[] auth = SettingConfig.getAuth(ConfigConsts.USER_DEFAULT_AUTH_OF_SETTING);
-                user.setAuth(auth[0], auth[1], auth[2], auth[3], auth[4]);
+                user.setAuth(-1, auth[1], auth[2], auth[3], auth[4]);
                 return userDAO.insertUser(user);
             }
         }

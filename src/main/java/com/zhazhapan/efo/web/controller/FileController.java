@@ -100,8 +100,8 @@ public class FileController {
         if (canGet) {
             int userId = Checker.isNull(user) ? 0 : user.getId();
             return Formatter.listToJson(fileService.listAll(userId, offset, categoryId, orderBy, search).stream()
-                    .filter(o -> o.getIsDownloadable() <= user.getIsDownloadable() &&
-                            o.getIsVisible() <= user.getIsVisible())
+                    .filter(o -> o.getCategoryId() == user.getIsDownloadable() ||
+                            user.getIsDownloadable() == 0)
                     .collect(Collectors.toList()));
         } else {
             jsonObject.put("error", "权限被限制，无法获取资源，请联系管理员");
