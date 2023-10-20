@@ -3,6 +3,7 @@ package com.zhazhapan.efo.model;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @author pantao
@@ -32,10 +33,10 @@ public class AuthRecord {
 
     private int isVisible;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     public AuthRecord(long id, int userId, long fileId, String username, String fileName, String localUrl, int
-            isDownloadable, int isUploadable, int isDeletable, int isUpdatable, int isVisible, Timestamp createTime) {
+            isDownloadable, int isUploadable, int isDeletable, int isUpdatable, int isVisible, LocalDateTime createTime) {
         this.id = id;
         this.userId = userId;
         this.fileId = fileId;
@@ -143,11 +144,11 @@ public class AuthRecord {
         this.isVisible = isVisible;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 }

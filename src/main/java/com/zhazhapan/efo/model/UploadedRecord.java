@@ -1,6 +1,7 @@
 package com.zhazhapan.efo.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @author pantao
@@ -24,10 +25,10 @@ public class UploadedRecord {
 
     private String visitUrl;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     public UploadedRecord(long id, int userId, String username, String email, String fileName, String categoryName,
-                          String localUrl, String visitUrl, Timestamp createTime) {
+                          String localUrl, String visitUrl, LocalDateTime createTime) {
         this.id = id;
         this.userId = userId;
         this.username = username;
@@ -103,11 +104,11 @@ public class UploadedRecord {
         this.visitUrl = visitUrl;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 }

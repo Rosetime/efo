@@ -152,7 +152,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void updateUserLoginTime(User user) {
         if (Checker.isNotNull(user)) {
-            user.setLastLoginTime(DateUtils.getCurrentTimestamp());
+            user.setLastLoginTime(DateUtils.getCurrentTimestamp().toLocalDateTime());
             userDAO.updateUserLoginTime(user.getId());
         }
     }

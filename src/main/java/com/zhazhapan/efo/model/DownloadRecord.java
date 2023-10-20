@@ -3,6 +3,7 @@ package com.zhazhapan.efo.model;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @author pantao
@@ -26,10 +27,10 @@ public class DownloadRecord {
 
     private String visitUrl;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     public DownloadRecord(long id, int userId, long fileId, String username, String email, String fileName, String
-            categoryName, String visitUrl, Timestamp createTime) {
+            categoryName, String visitUrl, LocalDateTime createTime) {
         this.id = id;
         this.userId = userId;
         this.fileId = fileId;
@@ -110,11 +111,11 @@ public class DownloadRecord {
         this.visitUrl = visitUrl;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 }

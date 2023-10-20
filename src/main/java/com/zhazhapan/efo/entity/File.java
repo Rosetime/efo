@@ -3,6 +3,7 @@ package com.zhazhapan.efo.entity;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * 文件表
@@ -24,7 +25,7 @@ public class File {
 
     private long size;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     private String description;
 
@@ -48,7 +49,7 @@ public class File {
 
     private int isVisible;
 
-    private Timestamp lastModifyTime;
+    private LocalDateTime lastModifyTime;
 
     public File(String name, String suffix, String localUrl, String visitUrl, String description, String tag, int
             userId, int categoryId) {
@@ -63,10 +64,10 @@ public class File {
         this.size = new java.io.File(localUrl).length();
     }
 
-    public File(long id, String name, String suffix, String localUrl, String visitUrl, long size, Timestamp
+    public File(long id, String name, String suffix, String localUrl, String visitUrl, long size, LocalDateTime
             createTime, String description, int checkTimes, int downloadTimes, String tag, int userId, int
             categoryId, int isDownloadable, int isUploadable, int isVisible, int isDeletable, int isUpdatable,
-                Timestamp lastModifyTime) {
+                LocalDateTime lastModifyTime) {
         this.id = id;
         this.name = name;
         this.suffix = suffix;
@@ -96,11 +97,11 @@ public class File {
         this.isVisible = isVisible;
     }
 
-    public Timestamp getLastModifyTime() {
+    public LocalDateTime getLastModifyTime() {
         return lastModifyTime;
     }
 
-    public void setLastModifyTime(Timestamp lastModifyTime) {
+    public void setLastModifyTime(LocalDateTime lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
     }
 
@@ -197,11 +198,11 @@ public class File {
         this.size = size;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

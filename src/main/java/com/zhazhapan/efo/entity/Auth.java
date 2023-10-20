@@ -3,6 +3,7 @@ package com.zhazhapan.efo.entity;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @author pantao
@@ -26,7 +27,7 @@ public class Auth {
 
     private long fileId;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     public Auth(int userId, long fileId) {
         this.userId = userId;
@@ -34,7 +35,7 @@ public class Auth {
     }
 
     public Auth(long id, int isUploadable, int isDeletable, int isUpdatable, int userId, long fileId, int isVisible,
-                int isDownloadable, Timestamp createTime) {
+                int isDownloadable, LocalDateTime createTime) {
         this.id = id;
         this.isUploadable = isUploadable;
         this.isDeletable = isDeletable;
@@ -127,11 +128,11 @@ public class Auth {
         this.fileId = fileId;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 }

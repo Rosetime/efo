@@ -3,6 +3,7 @@ package com.zhazhapan.efo.entity;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * 分类表
@@ -19,13 +20,13 @@ public class Category {
      */
     private String name;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     public Category(String name) {
         this.name = name;
     }
 
-    public Category(int id, String name, Timestamp createTime) {
+    public Category(int id, String name, LocalDateTime createTime) {
         this.id = id;
         this.name = name;
         this.createTime = createTime;
@@ -44,11 +45,11 @@ public class Category {
         this.name = name;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

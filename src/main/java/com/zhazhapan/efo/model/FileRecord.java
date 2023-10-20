@@ -3,6 +3,7 @@ package com.zhazhapan.efo.model;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @author pantao
@@ -44,14 +45,14 @@ public class FileRecord {
 
     private int isVisible;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
-    private Timestamp downloadTime;
+    private LocalDateTime downloadTime;
 
-    public FileRecord(long id, int userId, String username, String avatar, String fileName, long size, Timestamp
+    public FileRecord(long id, int userId, String username, String avatar, String fileName, long size, LocalDateTime
             createTime, String categoryName, String description, String tag, int checkTimes, int downloadTimes,
                       String visitUrl, int isUploadable, int isDeletable, int isUpdatable, int isDownloadable, int
-                              isVisible, Timestamp downloadTime) {
+                              isVisible, LocalDateTime downloadTime) {
         this.id = id;
         this.userId = userId;
         this.username = username;
@@ -73,7 +74,7 @@ public class FileRecord {
         this.downloadTime = downloadTime;
     }
 
-    public FileRecord(long id, int userId, String username, String avatar, String fileName, long size, Timestamp
+    public FileRecord(long id, int userId, String username, String avatar, String fileName, long size, LocalDateTime
             createTime, String categoryName, String description, String tag, int checkTimes, int downloadTimes,
                       String visitUrl, int isUploadable, int isDeletable, int isUpdatable, int isDownloadable, int
                               isVisible) {
@@ -102,11 +103,11 @@ public class FileRecord {
         return BeanUtils.toPrettyJson(this);
     }
 
-    public Timestamp getDownloadTime() {
+    public LocalDateTime getDownloadTime() {
         return downloadTime;
     }
 
-    public void setDownloadTime(Timestamp downloadTime) {
+    public void setDownloadTime(LocalDateTime downloadTime) {
         this.downloadTime = downloadTime;
     }
 
@@ -130,12 +131,12 @@ public class FileRecord {
         this.avatar = avatar;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
 
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

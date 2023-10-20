@@ -3,6 +3,7 @@ package com.zhazhapan.efo.entity;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * 下载记录表
@@ -14,7 +15,7 @@ public class Download {
 
     private long id;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     private int userId;
 
@@ -25,7 +26,7 @@ public class Download {
         this.fileId = fileId;
     }
 
-    public Download(int id, Timestamp createTime, int userId, int fileId) {
+    public Download(int id, LocalDateTime createTime, int userId, int fileId) {
         this.id = id;
         this.createTime = createTime;
         this.userId = userId;
@@ -45,11 +46,11 @@ public class Download {
         this.id = id;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

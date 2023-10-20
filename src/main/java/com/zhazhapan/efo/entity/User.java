@@ -3,6 +3,7 @@ package com.zhazhapan.efo.entity;
 import com.zhazhapan.efo.util.BeanUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * 用户表
@@ -37,9 +38,9 @@ public class User {
      */
     private int permission;
 
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
-    private Timestamp lastLoginTime;
+    private LocalDateTime lastLoginTime;
 
     private String avatar;
 
@@ -50,8 +51,8 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String username, String realName, String email, String password, int permission, Timestamp
-            createTime, Timestamp lastLoginTime, int isDownloadable, int isUploadable, int isVisible, int
+    public User(int id, String username, String realName, String email, String password, int permission, LocalDateTime
+            createTime, LocalDateTime lastLoginTime, int isDownloadable, int isUploadable, int isVisible, int
             isDeletable, int isUpdatable, String avatar) {
         this.id = id;
         this.username = username;
@@ -170,19 +171,19 @@ public class User {
         this.permission = permission;
     }
 
-    public Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Timestamp getLastLoginTime() {
+    public LocalDateTime getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Timestamp lastLoginTime) {
+    public void setLastLoginTime(LocalDateTime lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 
