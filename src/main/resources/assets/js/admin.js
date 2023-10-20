@@ -363,11 +363,15 @@ function addUser() {
                 code: verifyCode
             }, function (data) {
                 layer.closeAll();
-                var json = JSON.parse(data);
-                if (json.status === "success") {
-                    alerts("添加成功");
-                } else {
-                    alerts(json.message);
+                try {
+                    var json = JSON.parse(data);
+                    if (json.status === "success") {
+                        alerts("添加成功");
+                    } else {
+                        alerts(json.message);
+                    }
+                } catch (e) {
+                    window.location.href = "/signin";
                 }
             });
         } else {
@@ -580,6 +584,9 @@ function updateAuth(url, down, uplo, dele, upda, visi, key) {
                     app.users[key].isUpdatable = upda;
                 }
             }
+        },
+        error: function () {
+            window.location.href = "/signin";
         }
     });
 }
@@ -667,6 +674,9 @@ $(document).ready(function () {
                 if (data.indexOf("成功")) {
                     app.users[key].permission = permission;
                 }
+            },
+            error: function () {
+                window.location.href = "/signin";
             }
         });
     });
@@ -683,6 +693,9 @@ $(document).ready(function () {
                 success: function (data) {
                     layer.closeAll();
                     alerts("更新" + boolToChinese(data.indexOf("success") > 0));
+                },
+                error: function () {
+                    window.location.href = "/signin";
                 }
             });
         }
