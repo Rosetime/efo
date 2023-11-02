@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `efo`.`user` (
   `permission` INT NOT NULL DEFAULT 1 COMMENT '0（禁止登录），1（正常，普通用户），2（正常，管理员），3（正常，超级管理员）',
   `create_time` DATETIME NOT NULL DEFAULT current_timestamp COMMENT '注册时间',
   `last_login_time` DATETIME NOT NULL DEFAULT current_timestamp COMMENT '最后一次登录时间',
-  `is_downloadable` INT NOT NULL DEFAULT 1 COMMENT '（全局权限）用户是否可以下载，0不可以，1可以',
+  `is_downloadable` INT NOT NULL DEFAULT 1 COMMENT '（全局权限）用户是否可以下载，-1不可以，0可以',
   `is_uploadable` INT NOT NULL DEFAULT 1 COMMENT '（全局权限）用户是否可以上传，0不可以，1可以',
   `is_visible` INT NOT NULL DEFAULT 1 COMMENT '（全局权限）用户是否可以查看文件，0不可以，1可以',
   `is_deletable` INT NOT NULL DEFAULT 0 COMMENT '（全局权限）用户可以删除文件，0不可以，1可以',

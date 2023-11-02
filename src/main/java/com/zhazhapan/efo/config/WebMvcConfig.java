@@ -18,6 +18,15 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("http://127.0.0.1:5500") // 允许的源
+//                .allowedMethods("GET", "POST", "PUT", "DELETE") // 允许的 HTTP 方法
+//                .allowedHeaders("*") // 允许的头部信息
+//                .allowCredentials(true); // 是否允许发送身份凭证
+//    }
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>二维码工厂</title>
+    <link rel="stylesheet" href="/assets/css/qrcode.css">
+    <link rel="icon" href="/assets/img/chart.png">
+    <script src="/assets/js/medium-zoom.min.js"></script>
+    <!-- Place the first <script> tag in your HTML's <head> -->
+    <script src="https://cdn.tiny.cloud/1/1jiup7b1q6cf27wxoyvwdbm39h8m3bsi2tep6f7vvxmk7218/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+    <script>
+        tinymce.init({
+            language_url: "zh_CN.js", // 中文语言包路径
+            language: "zh_CN",
+            selector: 'textarea',
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            menubar: ' ',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+</head>
+<body>
+<h1>TinyMCE Quick Start Guide</h1>
+<form method="post">
+    <textarea id="mytextarea">Hello, World!</textarea>
+</form>
+<div class="content"></div>
+<script src="/assets/js/qrcode.js"></script>
+<script src="/assets/js/script.js"></script>
+<template id="template-facebook">
+    <div class="facebook-wrapper">
+        <section class="facebook-main" data-zoom-container></section>
+        <aside class="facebook-sidebar"></aside>
+    </div>
+</template>
+</body>
+</html>
